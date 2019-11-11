@@ -1,0 +1,12 @@
+# system file
+.DS_Store
+
+# idea file
+.idea
+*.iml
+
+# output file
+target
+*.log
+
+# eclipse

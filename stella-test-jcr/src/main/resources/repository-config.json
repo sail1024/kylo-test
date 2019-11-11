@@ -1,0 +1,35 @@
+{
+  "name": "test-repository",
+  "node-types" : ["users-schema.cnd"],
+  "workspaces": {
+    "predefined": ["sail-workspace"],
+    "default": "default",
+    "allowCreation": true
+  },
+
+  "security": {
+    "anonymous": {
+      "roles": ["readonly","readwrite","admin"],
+      "useOnFailedLogin": false
+    }
+  },
+
+  "storage": {
+    "persistence": {
+      "type": "db",
+      "connectionUrl": "jdbc:mysql://localhost:3306/sail",
+      "driver": "com.mysql.jdbc.Driver",
+      "username": "root",
+      "password": "tiny",
+      "poolSize" : 5,
+      "maximumPoolSize" : 20,
+      "createOnStart" : true,
+      "dropOnExit" : false
+    },
+    "binaryStorage" : {
+      "type" : "file",
+      "directory": "modeshape",
+      "minimumBinarySizeInBytes" : 1024
+    }
+  }
+}

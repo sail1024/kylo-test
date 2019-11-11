@@ -1,0 +1,55 @@
+/*
+ * Defines the following structure and node types:
+ *
+ *      "users"
+ *          user*
+ *
+ *      "logs"
+ *          log*
+ *      "images"
+            image*
+ *
+ */
+<jcr = 'http://www.jcp.org/jcr/1.0'>
+<nt='http://www.jcp.org/jcr/nt/1.0'>
+<mix='http://www.jcp.org/jcr/mix/1.0'>
+<sail='http://www.sail.com/exaple'>
+
+
+[sail:entity] > nt:hierarchyNode, mix:lastModified, mix:created, mix:referenceable
+
+[sail:users] > nt:folder
+ + * (sail:user)
+
+[sail:logs] > nt:folder
+ + * (sail:log)
+
+[sail:images] > nt:folder
+ + * (sail:image)
+
+[sail:image] > nt:file, mix:referenceable, sail:logable
+ - sail:id (STRING)
+ - sail:width (LONG)
+ - sail:height (LONG)
+
+[sail:logable] mixin
+ - sail:logs (WEAKREFERENCE) multiple < 'sail:log'
+
+[sail:user] > sail:entity, sail:logable
+ - sail:name (STRING)
+ - sail:nickName (STRING)
+ - sail:avatar (WEAKREFERENCE) < 'sail:image'
+ - sail:age (LONG)
+ - sail:sex (STRING)
+ - sail:enabled (BOOLEAN) = 'true' autocreated mandatory
+ - sail:password (STRING)
+
+[sail:log] > sail:entity, mix:title
+ - sail:id (LONG)
+ - sail:action (STRING)
+ - sail:level (STRING)
+ - sail:content (STRING)
+
+
+
+
