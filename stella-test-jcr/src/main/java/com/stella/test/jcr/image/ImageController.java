@@ -1,14 +1,12 @@
 package com.stella.test.jcr.image;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * image controller.
@@ -25,14 +23,19 @@ public class ImageController {
     private ImageService imageService;
 
     @PostMapping("/upload")
-    public Image uploadImage(@RequestParam("file") MultipartFile file){
+    public Image uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("name") String name){
 
         try {
-            return imageService.addImage(file.getOriginalFilename(), file.getInputStream());
+            return imageService.addImage(name, file.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
 
             return null;
         }
+    }
+
+    @GetMapping("/list")
+    public List<Image> queryImage(String name){
+        return imageService.listImage(name);
     }
 }

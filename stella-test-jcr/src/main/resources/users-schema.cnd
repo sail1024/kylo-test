@@ -27,13 +27,13 @@
 [sail:images] > nt:folder
  + * (sail:image)
 
+[sail:logable] mixin
+ - sail:logs (WEAKREFERENCE) multiple < 'sail:log'
+
 [sail:image] > nt:file, mix:referenceable, sail:logable
  - sail:id (STRING)
  - sail:width (LONG)
  - sail:height (LONG)
-
-[sail:logable] mixin
- - sail:logs (WEAKREFERENCE) multiple < 'sail:log'
 
 [sail:user] > sail:entity, sail:logable
  - sail:name (STRING)

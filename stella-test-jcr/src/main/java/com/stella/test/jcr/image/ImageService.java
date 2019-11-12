@@ -12,11 +12,14 @@ import org.springframework.util.StringUtils;
 import javax.annotation.PostConstruct;
 import javax.jcr.Binary;
 import javax.jcr.Node;
+import javax.jcr.NodeIterator;
 import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * image service
@@ -64,6 +67,36 @@ public class ImageService {
 
 
         return null;
+    }
+
+    public List<Image> listImage(String name){
+        List<Image> imageList = new ArrayList<>();
+        try {
+            Session session = sessionManager.getDefaultSession();
+
+            Node imagesNode = session.getRootNode().getNode(imagesPath);
+
+            NodeIterator iterator = null;
+            if (StringUtils.isEmpty(name)){
+                iterator = imagesNode.getNodes();
+            }else {
+                iterator = imagesNode.getNodes(name);
+            }
+
+            while (iterator.hasNext()){
+                Node imageNode = iterator.nextNode();
+                Image image = new Image();
+                image.setName(imageNode.getName());
+                image.setId(imageNode.getProperty("sail:id").getString());
+                image.setWidth(imageNode.getProperty("sail:width").getLong());
+                image.setHeight(imageNode.getProperty("sail:height").getLong());
+
+                imageList.add(image);
+            }
+        }catch (Exception e){
+            logger.error("list image error", e);
+        }
+        return imageList;
     }
 
     public Node getImageById(String id){
