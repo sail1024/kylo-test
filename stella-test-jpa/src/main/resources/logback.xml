@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</Pattern>
+		</layout>
+	</appender>
+	<appender name="server_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Append>true</Append>
+		<BufferSize>2048</BufferSize>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>../logs/server-log.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<logger name="org.springframework" level="INFO" />
+	<logger name="ch.qos.logback" level="WARN" />
+	<logger name="org.apache" level="WARN" />
+	<logger name="org.redisson" level="WARN"/>
+	<logger name="io.netty" level="INFO"/>
+	<logger name="com.netflix" level="WARN"/>
+	<logger name="com.gwec" level="DEBUG"/>
+
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="server_log" />
+	</root>
+</configuration>
