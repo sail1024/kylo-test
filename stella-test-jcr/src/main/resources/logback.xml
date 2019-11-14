@@ -26,7 +26,7 @@
 	<logger name="com.netflix" level="WARN"/>
 	<logger name="com.gwec" level="DEBUG"/>
 
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="server_log" />
 	</root>

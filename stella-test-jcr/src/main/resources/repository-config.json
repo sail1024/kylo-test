@@ -17,7 +17,7 @@
   "storage": {
     "persistence": {
       "type": "db",
-      "connectionUrl": "jdbc:mysql://localhost:3306/sail",
+      "connectionUrl": "jdbc:mysql://192.168.1.8:3306/sail?characterEncoding=utf8",
       "driver": "com.mysql.jdbc.Driver",
       "username": "root",
       "password": "tiny",

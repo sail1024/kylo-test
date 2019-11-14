@@ -142,12 +142,12 @@ public class LogService {
 
             if (!StringUtils.isEmpty(log.getContent())){
                 params.put("content", "%" + log.getContent() + "%");
-                where.append("AND [sail:content] LIKE $content");
+                where.append("AND LOWER([sail:content]) LIKE $content");
             }
 
             if (!StringUtils.isEmpty(log.getTitle())){
                 params.put("title", log.getTitle() + "%");
-                where.append("AND [jcr:title] LIKE $title");
+                where.append("AND LOWER([jcr:title]) LIKE $title");
             }
 
             if (where.length() > 0){
