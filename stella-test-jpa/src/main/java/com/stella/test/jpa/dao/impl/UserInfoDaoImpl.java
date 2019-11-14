@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
@@ -68,17 +67,9 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
     @Override
     public UserInfoEntity get(UserInfoEntity userInfoEntity) {
-        UserInfoEntity ret = persist.doWorkCallable(entityManager -> {
-            CriteriaQuery<UserInfoEntity> query = entityManager.getCriteriaBuilder().createQuery(UserInfoEntity.class);
-
-            Root<UserInfoEntity> from = query.from(UserInfoEntity.class);
-
-            query
-                    .select(from)
-                    .where(from.get("userId").in(userInfoEntity.getUserId()));
-
-            return entityManager.createQuery(query).getSingleResult();
-        });
-        return ret;
+        return persist.doWorkCallable(entityManager -> entityManager
+                .createQuery("select u from userInfo u where u.userId = :userId", UserInfoEntity.class)
+                .setParameter("userId", userInfoEntity.getUserId())
+                .getSingleResult());
     }
 }
