@@ -35,7 +35,7 @@
  - sail:width (LONG)
  - sail:height (LONG)
 
-[sail:user] > sail:entity, sail:logable
+[sail:user] > sail:entity, sail:logable, nt:versionHistory
  - sail:name (STRING)
  - sail:nickName (STRING)
  - sail:avatar (WEAKREFERENCE) < 'sail:image'

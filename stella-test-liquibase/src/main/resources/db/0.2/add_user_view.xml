@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="sail">
+        <createView replaceIfExists="true" viewName="USER_VIEW">
+            <![CDATA[
+            SELECT
+            u.ID as USER_ID, u.NAME as USER_NAME, u.PASSWORD as USER_PASSWORD, ue.BIRTH_DAY as USER_BIRTH_DAY
+            FROM
+            USER_INFO u, USER_INFO_EXT ue
+            WHERE
+            u.ID = ue.ID
+            ]]>
+        </createView>
+    </changeSet>
+</databaseChangeLog>

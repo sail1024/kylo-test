@@ -12,6 +12,7 @@
         <module>stella-test-jcr</module>
         <module>stella-test-jpa</module>
         <module>stella-test-spring-jpa</module>
+        <module>stella-test-liquibase</module>
     </modules>
 
 
