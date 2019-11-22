@@ -13,5 +13,9 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <rollback>
+            <dropTable tableName="USER_INFO_EXT"/>
+        </rollback>
     </changeSet>
 </databaseChangeLog>

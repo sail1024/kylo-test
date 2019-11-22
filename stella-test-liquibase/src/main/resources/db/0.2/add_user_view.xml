@@ -15,5 +15,9 @@
             u.ID = ue.ID
             ]]>
         </createView>
+
+        <rollback>
+            <dropView viewName="USER_VIEW"/>
+        </rollback>
     </changeSet>
 </databaseChangeLog>

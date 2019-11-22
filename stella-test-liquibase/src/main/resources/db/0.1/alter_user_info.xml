@@ -10,6 +10,10 @@
                 <constraints nullable="true"/>
             </column>
         </addColumn>
+
+        <rollback>
+            <dropColumn tableName="USER_INFO" columnName="PASSWORD"/>
+        </rollback>
     </changeSet>
 </databaseChangeLog>
 
