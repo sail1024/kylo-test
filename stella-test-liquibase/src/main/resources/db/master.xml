@@ -4,9 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <preConditions>
-        <dbms type="mysql"/>
-    </preConditions>
+    <property name="pk.type" value="bigint(20)" dbms="mysql"/>
+    <property name="pk.type" value="LONG" dbms="oracle"/>
 
     <include file="0.0/changelog.xml" relativeToChangelogFile="true"/>
     <include file="0.1/changelog.xml" relativeToChangelogFile="true"/>
