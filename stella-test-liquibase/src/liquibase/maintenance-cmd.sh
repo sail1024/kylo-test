@@ -8,11 +8,13 @@ CHANGE_LOG="../main/resources/db/master.xml"
 
 java -cp ${CP} \
     liquibase.integration.commandline.Main \
+     --logLevel="INFO" \
      --changeLogFile=${CHANGE_LOG} \
      --driver=${DRIVER} \
      --url=${URL} \
      --username=${USERNAME} \
      --password=${PASSWORD} \
+     --contexts="!test"
      $*
 
 # maintenance command
