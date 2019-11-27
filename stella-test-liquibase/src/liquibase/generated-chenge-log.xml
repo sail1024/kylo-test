@@ -1,8 +1,8 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-    <changeSet author="sail (generated)" id="1574409127210-1">
+    <changeSet author="sail (generated)" id="1574827442296-1">
         <createTable tableName="USER_INFO">
-            <column name="ID" type="BIGINT">
+            <column autoIncrement="true" name="ID" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
             <column defaultValue="" name="NAME" type="VARCHAR(32)">
@@ -11,8 +11,18 @@
             <column defaultValue="" name="PASSWORD" type="VARCHAR(32)"/>
         </createTable>
     </changeSet>
-    <changeSet author="sail (generated)" id="1574409127210-2">
-        <createTable tableName="USER_INFO_EXT">
+    <changeSet author="sail (generated)" id="1574827442296-2">
+        <createTable tableName="USER_INFO_A">
+            <column name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column defaultValue="2019-01-01 00:00:00" name="ADDRESS" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sail (generated)" id="1574827442296-3">
+        <createTable tableName="USER_INFO_B">
             <column name="ID" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
@@ -21,7 +31,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sail (generated)" id="1574409127210-3">
+    <changeSet author="sail (generated)" id="1574827442296-4">
         <createTable tableName="USER_LOG">
             <column name="ID" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -34,12 +44,12 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="sail (generated)" id="1574409127210-4">
+    <changeSet author="sail (generated)" id="1574827442296-5">
         <createIndex indexName="USER_ID" tableName="USER_LOG">
             <column defaultValueNumeric="0" name="USER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet author="sail (generated)" id="1574409127210-5">
-        <createView fullDefinition="false" remarks="" viewName="USER_VIEW">select `u`.`ID` AS `USER_ID`,`u`.`NAME` AS `USER_NAME`,`u`.`PASSWORD` AS `USER_PASSWORD`,`ue`.`BIRTH_DAY` AS `USER_BIRTH_DAY` from `liquibase`.`USER_INFO` `u` join `liquibase`.`USER_INFO_EXT` `ue` where (`u`.`ID` = `ue`.`ID`)</createView>
+    <changeSet author="sail (generated)" id="1574827442296-6">
+        <createView fullDefinition="false" remarks="" viewName="USER_VIEW">select `u`.`ID` AS `USER_ID`,`u`.`NAME` AS `USER_NAME`,`u`.`PASSWORD` AS `USER_PASSWORD`,`ub`.`BIRTH_DAY` AS `USER_BIRTH_DAY`,`ua`.`ADDRESS` AS `USER_ADDRESS` from `liquibase`.`USER_INFO` `u` join `liquibase`.`USER_INFO_B` `ub` join `liquibase`.`USER_INFO_A` `ua` where ((`u`.`ID` = `ua`.`ID`) and (`u`.`ID` = `ub`.`ID`))</createView>
     </changeSet>
 </databaseChangeLog>

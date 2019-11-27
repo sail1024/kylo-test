@@ -14,7 +14,7 @@ java -cp ${CP} \
      --url=${URL} \
      --username=${USERNAME} \
      --password=${PASSWORD} \
-     --contexts="!test"
+     --contexts="!test" \
      $*
 
 # maintenance command
