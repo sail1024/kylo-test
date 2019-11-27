@@ -8,11 +8,13 @@
         <createView replaceIfExists="true" viewName="USER_VIEW">
             <![CDATA[
             SELECT
-            u.ID as USER_ID, u.NAME as USER_NAME, u.PASSWORD as USER_PASSWORD, ue.BIRTH_DAY as USER_BIRTH_DAY
+            u.ID as USER_ID, u.NAME as USER_NAME, u.PASSWORD as USER_PASSWORD, ub.BIRTH_DAY as USER_BIRTH_DAY, ua.ADDRESS as USER_ADDRESS
             FROM
-            USER_INFO u, USER_INFO_EXT ue
+            USER_INFO u, USER_INFO_B ub, USER_INFO_A ua
             WHERE
-            u.ID = ue.ID
+            u.ID = ua.ID
+            AND
+            u.ID = ub.ID
             ]]>
         </createView>
 

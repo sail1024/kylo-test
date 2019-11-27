@@ -7,6 +7,9 @@
     <property name="pk.type" value="bigint(20)" dbms="mysql"/>
     <property name="pk.type" value="LONG" dbms="oracle"/>
 
+    <preConditions>
+        <runningAs username="root"/>
+    </preConditions>
     <include file="0.0/changelog.xml" relativeToChangelogFile="true"/>
     <include file="0.1/changelog.xml" relativeToChangelogFile="true"/>
     <include file="0.2/changelog.xml" relativeToChangelogFile="true"/>

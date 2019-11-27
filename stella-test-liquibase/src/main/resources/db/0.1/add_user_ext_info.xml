@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="1" author="sail">
-        <createTable tableName="USER_INFO_EXT">
+        <createTable tableName="USER_INFO_B">
             <column name="ID" type="bigint(20)">
                 <constraints primaryKey="true"/>
             </column>
@@ -16,6 +16,21 @@
 
         <rollback>
             <dropTable tableName="USER_INFO_EXT"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="sail">
+        <createTable tableName="USER_INFO_A">
+            <column name="ID" type="bigint(20)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ADDRESS" type="varchar(256)" defaultValue="2019-01-01 00:00:00">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="USER_INFO_A"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>
